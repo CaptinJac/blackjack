@@ -19,12 +19,31 @@ def build_deck():
     deck = [Card(value, color) for value in values for color in colors]
     return deck
 
-def blackjack(shoe):
+def check_win(player_hand, dealer_hand, bet):
+    if sum(player_hand) == 21 and sum(dealer_hand) != 21:
+        print("You have a Blackjack and have won %s!" %(bet * (3/2)))
+    elif sum(dealer_hand) == 21 and sum(player_hand) != 21:
+        print("The dealear has a Blackjack. Unfortunatly you have Lost.")
+
+
+def game(shoe):
     while len(shoe) != 0:
+        try:
+            bet = int(input("Place your bet now: "))
+            if bet < 25 or bet > 1000:
+                print("I am sorry but the minimum at this table is 25 and the max is 1000!\n")
+                break
+        except ValueError:
+            print("That is not a vaild bet. Try Agian! \n")
         player_hand = []
         dealer_hand = []
 
-        
+        for x in range(2):
+            player_hand.append(shoe[0])
+            shoe.pop(0)
+            dealer_hand.append(shoe[0])
+            shoe.pop(0)
+
 
 
 while True:
@@ -43,7 +62,5 @@ while counter <= player_input:
         shoe.append(x)
     shuffle(shoe)
     counter += 1
-
-for x in shoe:
-    print (x)
+game(shoe)
 
