@@ -25,7 +25,6 @@ def check_win(player_hand, dealer_hand, bet):
     elif sum(dealer_hand) == 21 and sum(player_hand) != 21:
         print("The dealear has a Blackjack. Unfortunatly you have Lost.")
 
-
 def game(shoe):
     while len(shoe) != 0:
         try:
@@ -45,22 +44,4 @@ def game(shoe):
             shoe.pop(0)
 
 
-
-while True:
-    try:
-        player_input = int(input("How many Decks Would you like to play with? \n"))
-        break
-    except ValueError:
-        print("That is not a valid entry Please Try Again! \n")
-
-counter = 0
-shoe =  []
-
-while counter <= player_input:
-    cards = build_deck()
-    for x in cards:
-        shoe.append(x)
-    shuffle(shoe)
-    counter += 1
-game(shoe)
 
